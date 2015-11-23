@@ -20,7 +20,7 @@ public class LevelsSituator : MonoBehaviour
     private void InstantiateLevels()
     {
 
-        for (int i = 0; i < levelsCount; i++)
+        for (int i = 0; i < LevelStorage.Instance.Levels.Count; i++)
         {
             levels.Add((Transform)Instantiate(levelPrefab));
             
@@ -31,7 +31,7 @@ public class LevelsSituator : MonoBehaviour
 
     private void PlaceLevels()
     {
-        for (int i = 0; i < levelsCount; i++)
+        for (int i = 0; i < LevelStorage.Instance.Levels.Count; i++)
         {
             float prefabHeight = levelPrefab.GetComponent<RectTransform>().sizeDelta.y;
             float prefabWidth = levelPrefab.GetComponent<RectTransform>().sizeDelta.x;
