@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public Transform spawnPoint;                    //Player spawn point transform;
     public Transform startPlatform;                 //Start platform transform for calculation purposes. We will use it as a start point for level generation;
     public Transform platformPrefab;                //Platform prefab. Prefab of the start platform object;
-    public Transform[] obstaclePrefabs;             //Obstacles prefabs;
+    //public Transform[] obstaclePrefabs;             //Obstacles prefabs;
     [Range(1, 10)]
     public int poolCount = 3;                       //Obstacles pool count for each tyoe of obstacle prefab;
     public float startOffset;                       //Obstacles generation start offset;
@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource;
     private IngameUI ingameUI;
 
+
+    private int currentLevel;
+    private Transform[] obstaclePrefabs;
 
     void Awake()
     {
@@ -60,6 +63,11 @@ public class GameManager : MonoBehaviour
         AudioListener.volume = PlayerPrefs.GetFloat("Vol");
         //Setting obstacles generation start offset;
         obstacleOffsetX = startOffset;
+
+	    currentLevel = LevelStorage.Instance.GetCurrentLevel();
+	    obstaclePrefabs = LevelStorage.Instance.Levels[currentLevel].obstaclePrefabs;
+
+
         //Instatiate obstacles;
         InstatiateObstacles();
         //Check obstacles positions evert 0.5 seconds;

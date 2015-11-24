@@ -34,11 +34,11 @@ public class LevelsSituator : MonoBehaviour
         for (int i = 0; i < LevelStorage.Instance.Levels.Count; i++)
         {
             float prefabHeight = levelPrefab.GetComponent<RectTransform>().sizeDelta.y;
-            float prefabWidth = levelPrefab.GetComponent<RectTransform>().sizeDelta.x;
             levels[i].transform.parent = gameObject.transform;
-            levels[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(prefabWidth / 2, - prefabHeight/2 - i* prefabHeight);
-            
-            levels[i].GetComponent<LevelPrefab>().PlaceNumber(i);
+            levels[i].GetComponent<RectTransform>().offsetMax = Vector2.zero;
+            levels[i].GetComponent<RectTransform>().offsetMin = Vector2.zero;
+            levels[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, - i * prefabHeight);
+            levels[i].GetComponent<LevelPrefab>().PlaceNumber(LevelStorage.Instance.Levels[i].levelNumber);
         }
     }
 }
